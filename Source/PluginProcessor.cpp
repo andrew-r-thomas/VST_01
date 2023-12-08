@@ -166,7 +166,8 @@ bool VST_01AudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* VST_01AudioProcessor::createEditor()
 {
-    return new VST_01AudioProcessorEditor (*this);
+//    return new VST_01AudioProcessorEditor (*this);
+    return new juce::GenericAudioProcessorEditor(*this);
 }
 
 //==============================================================================
@@ -181,6 +182,18 @@ void VST_01AudioProcessor::setStateInformation (const void* data, int sizeInByte
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+    
+    
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout
+    VST_01AudioProcessor::createParameterLayout()
+{
+        juce::AudioProcessorValueTreeState::ParameterLayout layout;
+        
+        layout.add(std::make_unique<juce::AudioParameterInt>(juce::ParameterID { "crush", 1 }, "crush", 1, 24, 16));
+        
+        return layout;
 }
 
 //==============================================================================

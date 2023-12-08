@@ -52,6 +52,9 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    
+    static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    juce::AudioProcessorValueTreeState crush_params { *this, nullptr, "crush parameters", createParameterLayout()};
 
 private:
     //==============================================================================
